@@ -26,12 +26,19 @@ app.get('/preveri', function(req, res) {
     //__dirname : It will resolve to your project folder.
 });
 
-app.post('/email', (req, res) => {
+app.post('/preveriklic', function(req, res) {
+  console.log('Data:', req.body);
+  res.send({"message":"ok"})
+
+});
+
+app.post('/dodaj', (req, res) => {
     //Send an email here but currently dummy email
     console.log('Data:', req.body);
-    login()
+   
 
-    res.send('Message received!')
+    res.send({"message":"Uspešno"})
+    login()
 });
 
 

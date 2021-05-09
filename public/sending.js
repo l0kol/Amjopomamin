@@ -2,19 +2,38 @@
 $('#dodajform').on('submit', (e) => {
     e.preventDefault();
     console.log('send')
-    const privatekey = $('#publickeyid').val().trim();
-    const pubkey = $('#privatekeyid').val().trim();
+    const public = $('#publickeyid').val().trim();
+    const private = $('#privatekeyid').val().trim();
 
-    var dataSend = JSON.stringify({'private':privatekey,'pubkey':pubkey});
+    var dataSend = JSON.stringify({'private':private,'pubkey':public});
    
     $.ajax({
         type: 'POST',
         dataType: 'json',
-        url: '/email',
+        url: '/dodaj',
         data: dataSend,
         headers:{'Content-Type': 'application/json'},
         success: function(jsondata){
-            console.log(jsondata)
+            alert("uspešno cepljen")
+        }
+     })
+});
+
+$('#preveriform').on('submit', (e) => {
+    e.preventDefault();
+    console.log('send')
+    const public = $('#tvojprivate').val().trim();
+
+    var dataSend = JSON.stringify({'pubkey':public});
+   
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: '/preveriklic',
+        data: dataSend,
+        headers:{'Content-Type': 'application/json'},
+        success: function(jsondata){
+            alert("ok")
         }
      })
 });
